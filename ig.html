@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KAPET KWENTO</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+margin:0;
+background:#1b120c;
+color:#f5e6d3;
+overflow:hidden;
+}
+
+/* NAVBAR */
+nav{
+background:#2e1c12;
+padding:15px;
+text-align:center;
+}
+nav button{
+background:none;
+border:none;
+color:#f5e6d3;
+font-size:16px;
+margin:0 12px;
+cursor:pointer;
+}
+nav button:hover{color:#c7a26a}
+
+/* SECTIONS */
+.section{
+display:none;
+height:calc(100vh - 70px);
+padding:30px;
+}
+.active{display:block}
+
+/* HOME */
+#home{
+background:
+linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
+url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover;
+text-align:center;
+}
+#home h1{
+margin-top:120px;
+font-size:60px;
+}
+
+/* MENU */
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+.card{
+background:#2e1c12;
+border-radius:15px;
+padding:15px;
+text-align:center;
+}
+.card img{
+width:100%;
+height:140px;
+object-fit:cover;
+border-radius:10px;
+}
+.card button{
+background:#c7a26a;
+border:none;
+padding:8px;
+width:100%;
+border-radius:6px;
+cursor:pointer;
+}
+.badge{
+background:#8b5e34;
+padding:3px 8px;
+border-radius:12px;
+font-size:12px;
+margin-left:6px;
+}
+
+/* ORDER */
+.orderBox{
+background:#2e1c12;
+padding:20px;
+border-radius:15px;
+}
+.orderItem{
+display:grid;
+grid-template-columns:1fr auto auto auto;
+gap:10px;
+margin-bottom:8px;
+}
+input[type=number]{width:55px}
+
+/* PAYMENT & RECEIPT */
+.payment,.receipt{display:none;margin-top:15px}
+.payment button,.receipt button{
+padding:10px;
+margin:5px;
+background:#c7a26a;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<button onclick="show('home')">Home</button>
+<button onclick="show('history')">History</button>
+<button onclick="show('coffee')">Coffee</button>
+<button onclick="show('pastries')">Pastries</button>
+<button onclick="show('cake')">Cake</button>
+<button onclick="show('order')">Order Summary</button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="section active">
+<h1>KAPET KWENTO</h1>
+<p>Isang tasa ng kape, isang kwento</p>
+</div>
+
+<!-- HISTORY -->
+<div id="history" class="section">
+<h2>History</h2>
+<p>
+Ang Kapet Kwento ay isang coffee shop na ginawa para sa pahinga, kwentuhan,
+at masarap na kape sa isang tahimik at aesthetic na lugar.
+</p>
+</div>
+
+<!-- COFFEE -->
+<div id="coffee" class="section">
+<h2>Coffee Hot / Cold</h2>
+<div class="menu">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348">
+<h3>Cappuccino</h3>
+<p>Creamy coffee with foam</p>
+<p>₱120</p>
+<button onclick="add('Cappuccino',120)">Add Order <span class="badge" id="b-Cappuccino">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523942839745-7848d6f4f7f8">
+<h3>Espresso</h3>
+<p>Strong pure coffee</p>
+<p>₱100</p>
+<button onclick="add('Espresso',100)">Add Order <span class="badge" id="b-Espresso">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1541167760496-1628856ab772">
+<h3>Latte</h3>
+<p>Smooth milk coffee</p>
+<p>₱130</p>
+<button onclick="add('Latte',130)">Add Order <span class="badge" id="b-Latte">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<h3>Americano</h3>
+<p>Bold classic coffee</p>
+<p>₱110</p>
+<button onclick="add('Americano',110)">Add Order <span class="badge" id="b-Americano">0</span></button>
+</div>
+
+</div>
+</div>
+
+<!-- PASTRIES -->
+<div id="pastries" class="section">
+<h2>Pastries</h2>
+<div class="menu">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812">
+<h3>Cinnamon</h3>
+<p>Sweet and aromatic</p>
+<p>₱90</p>
+<button onclick="add('Cinnamon',90)">Add Order <span class="badge" id="b-Cinnamon">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b">
+<h3>Bagel</h3>
+<p>Perfect with coffee</p>
+<p>₱80</p>
+<button onclick="add('Bagel',80)">Add Order <span class="badge" id="b-Bagel">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1605475128023-4bdb1c13f7c5">
+<h3>Croissant</h3>
+<p>Buttery and flaky</p>
+<p>₱100</p>
+<button onclick="add('Croissant',100)">Add Order <span class="badge" id="b-Croissant">0</span></button>
+</div>
+
+</div>
+</div>
+
+<!-- CAKE -->
+<div id="cake" class="section">
+<h2>Cake</h2>
+<div class="menu">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587">
+<h3>Choco Butter</h3>
+<p>Soft chocolate cake</p>
+<p>₱150</p>
+<button onclick="add('Choco Butter',150)">Add Order <span class="badge" id="b-Choco Butter">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024601-bec78aea704b">
+<h3>Cheesecake</h3>
+<p>Creamy rich cake</p>
+<p>₱160</p>
+<button onclick="add('Cheesecake',160)">Add Order <span class="badge" id="b-Cheesecake">0</span></button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1601979031925-424e53b6caaa">
+<h3>Tiramisu</h3>
+<p>Coffee-flavored cake</p>
+<p>₱170</p>
+<button onclick="add('Tiramisu',170)">Add Order <span class="badge" id="b-Tiramisu">0</span></button>
+</div>
+
+</div>
+</div>
+
+<!-- ORDER SUMMARY -->
+<div id="order" class="section">
+<h2>Order Summary</h2>
+<div class="orderBox" id="orders"></div>
+<h3>Total: ₱<span id="total">0</span></h3>
+<button onclick="checkout()">Checkout</button>
+
+<div class="payment" id="payment">
+<h3>Payment Method</h3>
+<button onclick="pay('GCash')">GCash</button>
+<button onclick="pay('Cash')">Cash</button>
+<button onclick="pay('Card')">Card</button>
+</div>
+
+<div class="receipt" id="receipt">
+<h3>Receipt</h3>
+<p id="receiptText"></p>
+<button onclick="window.print()">Print Receipt</button>
+</div>
+</div>
+
+<script>
+let orders=[];
+
+function show(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function add(name,price){
+let item=orders.find(o=>o.name===name);
+if(item)item.qty++;
+else orders.push({name,price,qty:1});
+document.getElementById("b-"+name).innerText=item?item.qty:1;
+render();
+}
+
+function render(){
+let box=document.getElementById("orders");
+box.innerHTML="";
+let total=0;
+
+orders.forEach(o=>{
+let sub=o.price*o.qty;
+total+=sub;
+box.innerHTML+=`
+<div class="orderItem">
+${o.name}
+<input type="number" min="1" value="${o.qty}" onchange="change('${o.name}',this.value)">
+₱${sub}
+<button onclick="remove('${o.name}')">X</button>
+</div>`;
+});
+document.getElementById("total").innerText=total;
+}
+
+function change(name,val){
+orders.find(o=>o.name===name).qty=parseInt(val);
+render();
+}
+
+function remove(name){
+orders=orders.filter(o=>o.name!==name);
+document.getElementById("b-"+name).innerText=0;
+render();
+}
+
+function checkout(){
+document.getElementById("payment").style.display="block";
+}
+
+function pay(method){
+let text="Payment Method: "+method+"<br><br>";
+orders.forEach(o=>{
+text+=`${o.name} x ${o.qty} = ₱${o.price*o.qty}<br>`;
+});
+text+="<br>Total: ₱"+document.getElementById("total").innerText;
+document.getElementById("receiptText").innerHTML=text;
+document.getElementById("receipt").style.display="block";
+}
+</script>
+
+</body>
+</html>
+
+photo-1509042239860-f550ce710b93
